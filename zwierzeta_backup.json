@@ -1,0 +1,106 @@
+[
+{
+  "model": "animals.pet",
+  "pk": 1,
+  "fields": {
+    "name": "Filemon",
+    "species": "cat",
+    "breed": "Sfinks",
+    "age": 7,
+    "description": "Kuwetkowy, bez rodowodu. Bardzo socjalny. Gotowy do adopcji od zaraz. Ma wszystkie szczepienia.",
+    "image": "pet_images/images-20.jpeg",
+    "is_adopted": false
+  }
+},
+{
+  "model": "animals.pet",
+  "pk": 2,
+  "fields": {
+    "name": "Rozpruwacz",
+    "species": "dog",
+    "breed": "American Bully",
+    "age": 2,
+    "description": "Kastrowany pies, tylko dla ludzi z doświadczeniem z tą rasą. Odrobaczony.",
+    "image": "pet_images/images-21.jpeg",
+    "is_adopted": false
+  }
+},
+{
+  "model": "animals.pet",
+  "pk": 3,
+  "fields": {
+    "name": "Fifarafa",
+    "species": "other",
+    "breed": "Chomik syryjski",
+    "age": 1,
+    "description": "Chomik, bardzo towarzyski.",
+    "image": "pet_images/images-22.jpeg",
+    "is_adopted": false
+  }
+},
+{
+  "model": "animals.pet",
+  "pk": 4,
+  "fields": {
+    "name": "Lucilla",
+    "species": "other",
+    "breed": "Wąż trawny",
+    "age": 2,
+    "description": "Bez problemu przyjmuje mrożony pokarm. Przyzwyczajony do brania na ręce.",
+    "image": "pet_images/waz-trawny-opheodrys-aestivus-trawne.jpg",
+    "is_adopted": false
+  }
+},
+{
+  "model": "animals.pet",
+  "pk": 5,
+  "fields": {
+    "name": "Mesjasz",
+    "species": "dog",
+    "breed": "Cavalier",
+    "age": 5,
+    "description": "Cavalier King Charles spaniel sunia roczna nauczona czystości spacerów",
+    "image": "pet_images/images1000x700.webp",
+    "is_adopted": false
+  }
+},
+{
+  "model": "animals.pet",
+  "pk": 6,
+  "fields": {
+    "name": "Kora",
+    "species": "dog",
+    "breed": "Mieszaniec",
+    "age": 5,
+    "description": "Kora ok 5 letnia suczka w typie owczarka niemieckiego która życie wystawiło na więcej prób niż ktokolwiek zasługuje. Po śmierci właścicielki trafiła do złych warunków- zagłodzona została odebrana interwencyjnie. Poszukuje ciepłego domu i ludzi którzy ofiarują jej serce.",
+    "image": "pet_images/images1000x700-2.webp",
+    "is_adopted": false
+  }
+},
+{
+  "model": "animals.pet",
+  "pk": 7,
+  "fields": {
+    "name": "Morus",
+    "species": "dog",
+    "breed": "Maltańczyk",
+    "age": 2,
+    "description": "Morus jest całkowicie poddany człowiekowi i jest mu wierny, toleruje inne pieski i jest bezkonfliktowy.\r\nPiesek został wykastrowany, zaczipowany i zaszczepiony p/ chorobom zakaźnym w tym wściekliźnie i leptozpirozie.",
+    "image": "pet_images/images-23.jpeg",
+    "is_adopted": false
+  }
+},
+{
+  "model": "animals.pet",
+  "pk": 8,
+  "fields": {
+    "name": "Oskar",
+    "species": "dog",
+    "breed": "Mieszaniec",
+    "age": 2,
+    "description": "Piesek jest w typie pudla i bardzo lubi biegać. Jest całkowicie zsocjalizowny i ma super kontakt z człowiekiem, inne psiaki ignoruje a z kotami też nie szuka zwady.\r\nOskar ma 2 lata i waży 27 kg, w kłębie ma wysokość 62 cm. Posiada wszyskie aktualne szczepienia, jest zabezpieczony preparatem Simparica - jeżeli chodzi o pasożyty zewnętrzne.",
+    "image": "pet_images/Cockapoo-puppy-crate-office-2022.jpg",
+    "is_adopted": false
+  }
+}
+]
