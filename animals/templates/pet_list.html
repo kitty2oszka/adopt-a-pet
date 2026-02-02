@@ -108,74 +108,83 @@
 </head>
 <body>
 
-
     <nav class="navbar navbar-light bg-light mb-0 px-4">
-    <span class="navbar-brand">Adopt a Pet</span>
-    <div>
-        {% if user.is_authenticated %}
-            <span>Cześć, {{ user.username }}!</span>
-            <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-sm btn-outline-danger">Wyloguj</button>
-            </form>
-        {% else %}
-            <a href="{% url 'login' %}" class="btn btn-sm btn-primary">Zaloguj</a>
-        {% endif %}
-    </div>
-</nav>
-
-<div class="container-fluid mt-0 px-0">
-    <div class="hero-banner" style="background-image: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('https://caringheartsanimalhospital.com/wp-content/uploads/2023/07/introducing-dogs-and-cats-1.jpg');">
-        <h1 class="text-center hero-title">ZNAJDŹ PRZYJACIELA 🐶🐱</h1>
-        <div class="row justify-content-center mb-4"></div>
-            <div class="col-md-6">
-                <form method="get" action="{% url 'pet_list' %}" class="d-flex gap-2">
-                     <input type="text" name="q" class="form-control" placeholder="Szukaj po imieniu..." value="{{ request.GET.q }}">
-                     <button type="submit" class="btn btn-primary">Szukaj</button>
+        <span class="navbar-brand">Adopt a Pet</span>
+        <div>
+            {% if user.is_authenticated %}
+                <span>Cześć, {{ user.username }}!</span>
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Wyloguj</button>
                 </form>
-            </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-sm btn-primary">Zaloguj</a>
+            {% endif %}
         </div>
-    <div class="px-4 mt-4">
-    <div class="row">
-        <div class="col-md-2 mb-4">
-            <div class="list-group">
-                <a href="?category=cat" class="list-group-item list-group-item-action">🐱 Tylko Koty</a>
-                <a href="?category=dog" class="list-group-item list-group-item-action">🐶 Tylko Psy</a>
-                <a href="{% url 'pet_list' %}" class="list-group-item list-group-item-action">Wszystkie</a>
+    </nav>
+
+    <div class="container-fluid mt-0 px-0">
+        <div class="hero-banner" style="background-image: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('https://caringheartsanimalhospital.com/wp-content/uploads/2023/07/introducing-dogs-and-cats-1.jpg');">
+            <h1 class="text-center hero-title">ZNAJDŹ PRZYJACIELA 🐶🐱</h1>
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-6">
+                    <form method="get" action="{% url 'pet_list' %}" class="d-flex gap-2">
+                        <input type="text" name="q" class="form-control" placeholder="Szukaj po imieniu..." value="{{ request.GET.q }}">
+                        <button type="submit" class="btn btn-primary">Szukaj</button>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-10">
+        <div class="px-4 mt-4">
             <div class="row">
-                {% for pet in pets %}
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        {% if pet.image %}
-                            <img src="{{ pet.image.url }}" class="card-img-top" alt="{{ pet.name }}" style="height: 200px; object-fit: cover;">
-                        {% else %}
-                            <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-                                Brak zdjęcia
-                            </div>
-                        {% endif %}
-                        
-                        <div class="card-body">
-                            <h5 class="card-title">{{ pet.name }}</h5>
-                            <p class="card-text text-muted">{{ pet.get_species_display }}</p>
-                            <p class="card-text">{{ pet.description|truncatewords:20 }}</p>
-
-                            {% if user.is_authenticated %}
-                                <button onclick="adoptPet('{{ pet.name }}')" class="btn btn-success w-100">Adoptuj ❤️</button>
-                            {% else %}
-                                <a href="{% url 'login' %}" class="btn btn-outline-secondary w-100">Zaloguj się, aby adoptować</a>
-                            {% endif %}    
-                        </div>
+                <div class="col-md-2 mb-4">
+                    <div class="list-group">
+                        <a href="?category=cat" class="list-group-item list-group-item-action fw-bold">🐱 Tylko Koty</a>
+                        <a href="?category=dog" class="list-group-item list-group-item-action fw-bold">🐶 Tylko Psy</a>
+                        <a href="{% url 'pet_list' %}" class="list-group-item list-group-item-action">Wszystkie</a>
                     </div>
                 </div>
-                {% endfor %}
+
+                <div class="col-md-10">
+                    <div class="row">
+                        {% for pet in pets %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card shadow-sm">
+                                <a href="{% url 'pet_detail' pet.pk %}">
+                                    {% if pet.image %}
+                                        <img src="{{ pet.image.url }}" class="card-img-top" alt="{{ pet.name }}" style="height: 200px; object-fit: cover;">
+                                    {% else %}
+                                        <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                                            Brak zdjęcia
+                                        </div>
+                                    {% endif %}
+                                </a>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="{% url 'pet_detail' pet.pk %}" class="text-decoration-none text-dark">
+                                            {{ pet.name }}
+                                        </a>
+                                    </h5>
+
+                                    <p class="card-text text-muted">{{ pet.get_species_display }}</p>
+                                    <p class="card-text">{{ pet.description|truncatewords:20 }}</p>
+
+                                    {% if user.is_authenticated %}
+                                        <button onclick="adoptPet('{{ pet.name }}')" class="btn btn-success w-100">Adoptuj ❤️</button>
+                                    {% else %}
+                                        <a href="{% url 'login' %}" class="btn btn-outline-secondary w-100">Zaloguj się, aby adoptować</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <script>
     function adoptPet(petName) {

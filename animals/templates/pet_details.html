@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pet.name }} - Adopt a Pet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5 mb-5">
+    <a href="{% url 'pet_list' %}" class="btn btn-outline-secondary mb-3">← Wróć do listy</a>
+
+    <div class="card shadow">
+        <div class="row g-0">
+            <div class="col-md-6">
+                {% if pet.image %}
+                    <img src="{{ pet.image.url }}" class="img-fluid rounded-start h-100" style="object-fit: cover; min-height: 400px; width: 100%;" alt="{{ pet.name }}">
+                {% else %}
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center h-100" style="min-height: 400px;">
+                        Brak zdjęcia
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card-body p-5">
+                    <h1 class="card-title display-4 fw-bold">{{ pet.name }}</h1>
+                    
+                    <span class="badge bg-primary fs-6 mb-4">{{ pet.get_species_display }}</span>
+
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <small class="text-muted">Rasa:</small>
+                                    <p class="fw-bold fs-5">{{ pet.breed|default:"Mieszaniec" }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Wiek:</small>
+                                    <p class="fw-bold fs-5">
+                                        {% if pet.age %}
+                                            {{ pet.age }} lat
+                                        {% else %}
+                                            Nieznany
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h5 class="mt-4">O mnie:</h5>
+                    <p class="card-text fs-5">{{ pet.description }}</p>
+                    
+                    <div class="mt-5 pt-3 border-top">
+                        {% if user.is_authenticated %}
+                            <button onclick="alert('Wysłano prośbę o adopcję zwierzaka: {{ pet.name }}!')" class="btn btn-success btn-lg w-100 py-3">
+                                Adoptuj {{ pet.name }} ❤️
+                            </button>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg w-100">
+                                Zaloguj się, aby adoptować
+                            </a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+   
